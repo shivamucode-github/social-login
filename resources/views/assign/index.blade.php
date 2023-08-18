@@ -65,7 +65,7 @@
                                         @endphp
                                     </td>
                                     <td class="border-2 border-gray-400 border-b-0 text-center py-1">
-                                        <a href="{{ route('assign.edit', $user->slug) }}">Edit</a>
+                                        <a href="{{ route('assign.edit', $user) }}">Edit</a>
                                     </td>
                                 </tr>
                             @endforeach

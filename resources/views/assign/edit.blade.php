@@ -16,11 +16,11 @@
 
                             <select name="user" id="user" class="w-full mt-3">
                                 <option disabled value="">None</option>
-                                @foreach ($users as $user)
-                                    @if ($user->id == $findUser->id)
-                                        <option selected value="{{ $user->id }}">{{ $user->name }}</option>
+                                @foreach ($allUsers as $eachUser)
+                                    @if ($eachUser->id == $user->id)
+                                        <option selected value="{{ $eachUser->id }}">{{ $eachUser->name }}</option>
                                     @else
-                                        <option disabled value="{{ $user->id }}">{{ $user->name }}</option>
+                                        <option disabled value="{{ $eachUser->id }}">{{ $eachUser->name }}</option>
                                     @endif
                                 @endforeach
                             </select>
@@ -32,7 +32,7 @@
 
                             <select name="roles[]" id="roles" multiple class="w-full mt-3">
                                 @foreach ($roles as $role)
-                                    <option @if ($findUser->roleAssigned->contains($role->id)) {{ 'selected' }} @endif
+                                    <option @if ($user->roleAssigned->contains($role->id)) {{ 'selected' }} @endif
                                         value="{{ $role->id }}">{{ $role->name }}</option>
                                 @endforeach
                             </select>
@@ -44,7 +44,7 @@
 
                             <select name="projects[]" id="projects" multiple class="w-full mt-3">
                                 @foreach ($projects as $project)
-                                    <option @if ($findUser->projectAssigned->contains($project->id)) {{ 'selected' }} @endif
+                                    <option @if ($user->projectAssigned->contains($project->id)) {{ 'selected' }} @endif
                                         value="{{ $project->id }}">
                                         {{ $project->name }}</option>
                                 @endforeach
@@ -57,7 +57,7 @@
 
                             <select name="companies[]" id="companies" multiple class="w-full mt-3">
                                 @foreach ($companies as $company)
-                                    <option @if ($findUser->companyAssigned->contains($company->id)) {{ 'selected' }} @endif
+                                    <option @if ($user->companyAssigned->contains($company->id)) {{ 'selected' }} @endif
                                         value="{{ $company->id }}">{{ $company->name }}</option>
                                 @endforeach
                             </select>

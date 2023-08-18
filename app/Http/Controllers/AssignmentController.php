@@ -6,12 +6,15 @@ use App\Models\Company;
 use App\Models\Project;
 use App\Models\Role;
 use App\Models\User;
+use App\Notifications\EmailNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class AssignmentController extends Controller
 {
     public function index()
     {
+
         $users = User::with(['roleAssigned', 'projectAssigned', 'companyAssigned'])->get();
         return view('assign.index', compact(['users']));
     }
@@ -58,17 +61,18 @@ class AssignmentController extends Controller
             $user->companyAssigned()->attach($attachCompanies);
         }
 
+        Notification::send($user,new EmailNotification());
+
         return redirect('assign')->with('success', 'Roles,Projects and Companies assigned to user');
     }
 
-    public function edit($slug)
+    public function edit(User $user)
     {
-        $findUser = User::where('slug', $slug)->with(['roleAssigned', 'projectAssigned', 'companyAssigned'])->first();
-        $users = User::all();
+        $allUsers = User::all();
         $roles = Role::all();
         $projects = Project::all();
         $companies = Company::all();
-        return view('assign.edit', compact(['findUser', 'users', 'projects', 'companies', 'roles']));
+        return view('assign.edit', compact(['user', 'allUsers', 'projects', 'companies', 'roles']));
     }
 
     public function update(Request $request)
@@ -122,5 +126,6 @@ class AssignmentController extends Controller
 
     public function destory()
     {
+
     }
 }
