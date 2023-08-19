@@ -15,6 +15,7 @@ class Company extends Model
         'name',
         'slug',
         'created_by',
+        'modified_by',
     ];
 
     public function sluggable(): array
@@ -26,8 +27,13 @@ class Company extends Model
         ];
     }
 
-    public function user()
+    public function companyCreatedBy()
     {
         return $this->belongsTo(User::class,'created_by','id');
+    }
+
+    public function companyModifiedBy()
+    {
+        return $this->belongsTo(User::class,'modified_by','id');
     }
 }

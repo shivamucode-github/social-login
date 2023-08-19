@@ -23,6 +23,7 @@
                             <td class="border-2 text-center py-2 font-semibold">Created By</td>
                             <td class="border-2 text-center py-2 font-semibold">Created On</td>
                             <td class="border-2 text-center py-2 font-semibold">Modified On</td>
+                            <td class="border-2 text-center py-2 font-semibold">Action</td>
                         </tr>
                         @foreach ($roles as $key => $role)
                             <tr>
@@ -32,6 +33,7 @@
                                 <td class="border-2 text-center py-1">{{ $role->user->name }}</td>
                                 <td class="border-2 text-center py-1">{{ $role->created_at->format('d-M-Y') }}</td>
                                 <td class="border-2 text-center py-1">{{ $role->updated_at->format('d-M-Y') }}</td>
+                                <td class="border-2 text-center py-1"><a href="{{ route('roles.edit',$role)}}">edit</a></td>
                             </tr>
                         @endforeach
                     </table>

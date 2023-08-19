@@ -35,12 +35,22 @@ class RoleController extends Controller
         return redirect('roles')->with('success','New role added successfully');
     }
 
-    public function edit()
+    public function edit(Role $role)
     {
+        return view('roles.edit',compact('role'));
     }
 
-    public function update()
+    public function update(Request $request,Role $role)
     {
+        $attributes = $request->validate([
+            'name' => 'required|min:2|max:100'
+        ]);
+
+        $role->update(array_merge(
+            $attributes
+        ));
+
+        return redirect('roles')->with('success','Role updated Successfully');
     }
 
     public function destory()

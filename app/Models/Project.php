@@ -15,6 +15,7 @@ class Project extends Model
         'name',
         'slug',
         'created_by',
+        'modified_by',
     ];
 
     public function sluggable(): array
@@ -29,7 +30,11 @@ class Project extends Model
 
     // Relationships
 
-    public function user(){
+    public function userCreatedBy(){
         return $this->belongsTo(User::class,'created_by','id');
+    }
+
+    public function userModifiedBy(){
+        return $this->belongsTo(User::class,'modified_by','id');
     }
 }

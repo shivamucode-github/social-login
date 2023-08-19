@@ -17,19 +17,21 @@
                         <tr class=" text-lg">
                             <td class="border-2 text-center font-semibold py-2">Sr no.</td>
                             <td class="border-2 text-center font-semibold py-2">Company Name</td>
-                            <td class="border-2 text-center font-semibold py-2">Slug</td>
                             <td class="border-2 text-center font-semibold py-2">Created By</td>
+                            <td class="border-2 text-center font-semibold py-2">Modified By</td>
                             <td class="border-2 text-center font-semibold py-2">Created On</td>
                             <td class="border-2 text-center font-semibold py-2">Modified On</td>
+                            <td class="border-2 text-center font-semibold py-2">Action</td>
                         </tr>
                         @foreach ($companies as $key => $company)
                         <tr>
                             <td class="border-2 text-center py-1">{{ $key+1 }}</td>
                             <td class="border-2 text-center py-1">{{ $company->name }}</td>
-                            <td class="border-2 text-center py-1">{{ $company->slug }}</td>
-                            <td class="border-2 text-center py-1">{{ $company->user->name }}</td>
+                            <td class="border-2 text-center py-1">{{ $company->companyCreatedBy->name }}</td>
+                            <td class="border-2 text-center py-1">{{ $company->companyModifiedBy->name }}</td>
                             <td class="border-2 text-center py-1">{{ $company->created_at->format('d-M-Y') }}</td>
                             <td class="border-2 text-center py-1">{{ $company->updated_at->format('d-M-Y') }}</td>
+                            <td class="border-2 text-center py-1 flex items-center justify-center gap-4"><a class="text-red-500" href="{{ route('companies.delete',$company)}}">delete</a><a class="text-blue-500" href="{{route('companies.edit',$company)}}">edit</a></td>
                         </tr>
                         @endforeach
                     </table>

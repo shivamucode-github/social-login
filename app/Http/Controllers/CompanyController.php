@@ -29,21 +29,38 @@ class CompanyController extends Controller
             $attributes,
             [
                 'created_by' => Auth::id(),
+                'modified_by' => Auth::id(),
             ]
         ));
 
         return redirect('companies')->with('success','New Company added successfully');
     }
 
-    public function edit()
+    public function edit(Company $company)
     {
+        return view('company.edit',compact('company'));
     }
 
-    public function update()
+    public function update(Request $request,Company $company)
     {
+        $attributes = $request->validate([
+            'name' => 'required|min:2|max:100'
+        ]);
+
+        $company->update(array_merge(
+            $attributes,
+            [
+                'modified_by' => Auth::id(),
+            ]
+        ));
+
+        return redirect('companies')->with('success','Comapny Updated Successfully');
     }
 
-    public function destory()
+    public function destory(Company $company)
     {
+        $company->delete();
+
+        return redirect('companies')->with('success','Company Deleted');
     }
 }

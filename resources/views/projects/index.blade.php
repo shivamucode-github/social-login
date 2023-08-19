@@ -41,19 +41,21 @@
                         <tr>
                             <td class="py-2 border-2 text-center font-semibold">Sr no.</td>
                             <td class="py-2 border-2 text-center font-semibold">Project Name</td>
-                            <td class="py-2 border-2 text-center font-semibold">Slug</td>
                             <td class="py-2 border-2 text-center font-semibold">Created By</td>
+                            <td class="py-2 border-2 text-center font-semibold">Modified_by</td>
                             <td class="py-2 border-2 text-center font-semibold">Created On</td>
                             <td class="py-2 border-2 text-center font-semibold">Modified On</td>
+                            <td class="py-2 border-2 text-center font-semibold">Action</td>
                         </tr>
                         @foreach ($projects as $key => $project)
                             <tr>
                                 <td  class="border-2 text-center py-1">{{ $key + 1 }}</td>
                                 <td  class="border-2 text-center py-1">{{ $project->name }}</td>
-                                <td  class="border-2 text-center py-1">{{ $project->slug }}</td>
-                                <td  class="border-2 text-center py-1">{{ $project->user->name }}</td>
+                                <td  class="border-2 text-center py-1">{{ $project->userCreatedBy->name }}</td>
+                                <td  class="border-2 text-center py-1">{{ $project->userModifiedBy->name }}</td>
                                 <td  class="border-2 text-center py-1">{{ $project->created_at->format('d-M-Y') }}</td>
                                 <td  class="border-2 text-center py-1">{{ $project->updated_at->format('d-M-Y') }}</td>
+                                <td  class="border-2 text-center py-1 flex items-center justify-center gap-4"><a class="text-red-600" href="{{ route('projects.delete',$project)}}">delete</a><a class="text-blue-600" href="{{ route('projects.edit',$project->slug) }}">edit</a></td>
                             </tr>
                         @endforeach
                     </table>

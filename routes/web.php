@@ -32,26 +32,26 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('roles/create', [RoleController::class, 'create'])->name('roles.create');
     Route::post('roles/store', [RoleController::class, 'store'])->name('roles.store');
     Route::get('roles/{role:slug}/edit', [RoleController::class, 'edit'])->name('roles.edit');
-    Route::post('roles/update', [RoleController::class, 'update'])->name('roles.update');
-    Route::delete('roles/{role:slug}/delete', [RoleController::class, 'delete'])->name('roles.delete');
+    Route::post('roles/update/{role:id}', [RoleController::class, 'update'])->name('roles.update');
+    Route::get('roles/{role:slug}/delete', [RoleController::class, 'destory'])->name('roles.delete');
     /** */
 
     /** Companies Module */
     Route::get('companies', [CompanyController::class, 'index'])->name('companies');
     Route::get('companies/create', [CompanyController::class, 'create'])->name('companies.create');
     Route::post('companies/store', [CompanyController::class, 'store'])->name('companies.store');
-    Route::get('companies/{role:slug}/edit', [CompanyController::class, 'edit'])->name('companies.edit');
-    Route::post('companies/update', [CompanyController::class, 'update'])->name('companies.update');
-    Route::delete('companies/{role:slug}/delete', [CompanyController::class, 'delete'])->name('companies.delete');
+    Route::get('companies/{company:slug}/edit', [CompanyController::class, 'edit'])->name('companies.edit');
+    Route::post('companies/update/{company:id}', [CompanyController::class, 'update'])->name('companies.update');
+    Route::get('companies/{company:slug}/delete', [CompanyController::class, 'destory'])->name('companies.delete');
     /** */
 
     /** Projects Module */
     Route::get('projects', [ProjectController::class, 'index'])->name('projects');
     Route::get('projects/create', [ProjectController::class, 'create'])->name('projects.create');
     Route::post('projects/store', [ProjectController::class, 'store'])->name('projects.store');
-    Route::get('projects/{role:slug}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
-    Route::post('projects/update', [ProjectController::class, 'update'])->name('projects.update');
-    Route::delete('projects/{role:slug}/delete', [ProjectController::class, 'delete'])->name('projects.delete');
+    Route::get('projects/{project:slug}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
+    Route::post('projects/update/{project:id}', [ProjectController::class, 'update'])->name('projects.update');
+    Route::get('projects/{project:slug}/delete', [ProjectController::class, 'destory'])->name('projects.delete');
     /** */
 
     /** Assignment Module */
@@ -60,7 +60,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('assign/store', [AssignmentController::class, 'store'])->name('assign.store');
     Route::get('assign/{user:slug}/edit', [AssignmentController::class, 'edit'])->name('assign.edit');
     Route::post('assign/update', [AssignmentController::class, 'update'])->name('assign.update');
-    Route::delete('assign/{role:slug}/delete', [AssignmentController::class, 'delete'])->name('assign.delete');
+    Route::get('assign/{role:slug}/delete', [AssignmentController::class, 'delete'])->name('assign.delete');
     /** */
 });
 

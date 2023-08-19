@@ -23,29 +23,46 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {
-        $atributes = $request->validate([
+        $attributes = $request->validate([
             'name' => 'required|min:3|max:100'
         ]);
 
         Project::create(array_merge(
-            $atributes,
+            $attributes,
             [
                 'created_by' => Auth::id(),
+                'modified_by' => Auth::id()
             ]
         ));
 
-        return redirect('projects')->with('success','New Project added successfully');
+        return redirect('projects')->with('success', 'New Project added successfully');
     }
 
-    public function edit()
+    public function edit(Project $project)
     {
+        return view('projects.edit', compact('project'));
     }
 
-    public function update()
+    public function update(Request $request, Project $project)
     {
+        $attributes = $request->validate([
+            'name' => 'required|min:2|max:100'
+        ]);
+
+        $project->update(array_merge(
+            $attributes,
+            [
+                'modified_by' => Auth::id(),
+            ]
+        ));
+
+        return redirect('projects')->with('success','Project Updated Successfully');
     }
 
-    public function destory()
+    public function destory(Project $project)
     {
+        $project->delete();
+
+        return redirect('projects')->with('success','Project Deleted');
     }
 }
