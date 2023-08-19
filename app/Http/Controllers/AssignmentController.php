@@ -61,7 +61,7 @@ class AssignmentController extends Controller
             $user->companyAssigned()->attach($attachCompanies);
         }
 
-        Notification::send($user,new EmailNotification());
+        Notification::send($user, new EmailNotification());
 
         return redirect('assign')->with('success', 'Roles,Projects and Companies assigned to user');
     }
@@ -126,6 +126,5 @@ class AssignmentController extends Controller
 
     public function destory()
     {
-
     }
 }
