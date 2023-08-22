@@ -60,7 +60,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('assign/store', [AssignmentController::class, 'store'])->name('assign.store');
     Route::get('assign/{user:slug}/edit', [AssignmentController::class, 'edit'])->name('assign.edit');
     Route::post('assign/update', [AssignmentController::class, 'update'])->name('assign.update');
-    Route::get('assign/{role:slug}/delete', [AssignmentController::class, 'delete'])->name('assign.delete');
+    Route::get('assign/{role:slug}/delete', [AssignmentController::class, 'destory'])->name('assign.delete');
     /** */
 });
 
