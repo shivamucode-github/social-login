@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Nette\Utils\Random;
 
@@ -19,8 +20,8 @@ class CompanyFactory extends Factory
     {
         return [
             'name' => fake()->company(),
-            'created_by' => 1,
-            'modified_by' => 1,
+            'created_by' => User::all()->pluck('id')->random(),
+            'modified_by' => User::all()->pluck('id')->random(),
             'slug' => Random::generate(6,'a-z'),
             'created_at' => now(),
             'updated_at' => now(),
